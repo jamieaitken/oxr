@@ -17,8 +17,8 @@ c := oxr.New(oxr.WithAppID("your_app_id"), oxr.WithDoer(doer))
 
 ### Latest Rates
 
-Latest retrieves the latest exchange rates available from the Open Exchange
-Rates [API](https://docs.openexchangerates.org/docs/latest-json)
+[Retrieve](https://docs.openexchangerates.org/docs/latest-json) the latest exchange rates available from the Open 
+Exchange Rates API
 
 ```go
 doer := http.DefaultClient
@@ -29,8 +29,8 @@ latestRates, err := c.Latest(context.Background(), oxr.LatestForBaseCurrency("GB
 
 ### Historical
 
-Historical retrieves historical exchange rates for any date available from the Open Exchange Rates
-[API](https://docs.openexchangerates.org/docs/historical-json), currently going back to 1st January 1999.
+[Retrieve](https://docs.openexchangerates.org/docs/historical-json) historical exchange rates for any date available 
+from the Open Exchange Rates API, currently going back to 1st January 1999.
 
 ```go
 doer := http.DefaultClient
@@ -45,8 +45,8 @@ oxr.HistoricalForBaseCurrency("USD"),
 
 ### Currencies
 
-Currencies retrieves the list of all currency symbols available from the Open Exchange
-Rates [API](https://docs.openexchangerates.org/docs/currencies-json), along with their full names.
+[Retrieve](https://docs.openexchangerates.org/docs/currencies-json) the list of all currency symbols available from the 
+Open Exchange Rates API, along with their full names.
 
 ```go
 doer := http.DefaultClient
@@ -57,14 +57,14 @@ currencies, err := c.Currencies(context.Background())
 
 ### Time Series
 
-TimeSeries retrieves historical exchange rates for a given time period, where available, using the time series / bulk
-download [API](https://docs.openexchangerates.org/docs/time-series-json) endpoint.
+[Retrieve](https://docs.openexchangerates.org/docs/time-series-json) historical exchange rates for a given time period, 
+where available, using the time series / bulk download API endpoint.
 
 ```go
 doer := http.DefaultClient
 c := oxr.New(oxr.WithAppID("your_app_id"), oxr.WithDoer(doer))
 
-currencies, err := c.TimeSeries(
+timeSeries, err := c.TimeSeries(
 context.Background(),
 oxr.TimeSeriesForStartDate(time.Date(2013, 01, 01, 00, 00, 00, 00, time.UTC)),
 oxr.TimeSeriesForEndDate(time.Date(2013, 01, 31, 00, 00, 00, 00, time.UTC)),
@@ -75,14 +75,14 @@ oxr.TimeSeriesForDestinationCurrencies([]string{"BTC", "EUR", "HKD"}),
 
 ### Convert
 
-Convert any money value from one currency to another at the
-latest [API](https://docs.openexchangerates.org/docs/convert) rates.
+Convert any money value from one currency to another at the latest 
+[API](https://docs.openexchangerates.org/docs/convert) rates.
 
 ```go
 doer := http.DefaultClient
 c := oxr.New(oxr.WithAppID("your_app_id"), oxr.WithDoer(doer))
 
-currencies, err := c.Convert(
+conversion, err := c.Convert(
 context.Background(),
 oxr.ConvertWithValue(100.12),
 oxr.ConvertForBaseCurrency("GBP"),
@@ -92,14 +92,14 @@ oxr.ConvertForDestinationCurrency("USD"),
 
 ### Open High Low Close (OHLC)
 
-OpenHighLowClose [retrieves](https://docs.openexchangerates.org/docs/ohlc-json) historical Open, High Low, Close (OHLC)
-and Average exchange rates for a given time period, ranging from 1 month to 1 minute, where available.
+[Retrieve](https://docs.openexchangerates.org/docs/ohlc-json) historical Open, High Low, Close (OHLC) and Average 
+exchange rates for a given time period, ranging from 1 month to 1 minute, where available.
 
 ```go
 doer := http.DefaultClient
 c := oxr.New(oxr.WithAppID("your_app_id"), oxr.WithDoer(doer))
 
-currencies, err := c.OpenHighLowClose(
+ohlc, err := c.OpenHighLowClose(
 context.Background(),
 oxr.OHLCForBaseCurrency("USD"),
 oxr.OHLCForPeriod(oxr.ThirtyMinute),
@@ -110,14 +110,14 @@ oxr.OHLCForStartTime(time.Date(2022, 3, 15, 13, 00, 00, 00, time.UTC)),
 
 ### Usage
 
-Usage [retrieves](https://docs.openexchangerates.org/docs/usage-json) basic plan information and usage statistics for an
-Open Exchange Rates App ID.
+[Retrieves](https://docs.openexchangerates.org/docs/usage-json) basic plan information and usage statistics for an Open 
+Exchange Rates App ID.
 
 ```go
 doer := http.DefaultClient
 c := oxr.New(oxr.WithAppID("your_app_id"), oxr.WithDoer(doer))
 
-currencies, err := c.Usage(context.Background())
+usage, err := c.Usage(context.Background())
 ```
 
 ## License
